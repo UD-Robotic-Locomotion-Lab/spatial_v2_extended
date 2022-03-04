@@ -10,6 +10,9 @@ function  [Xj,S] = jcalc( jtyp, q )
 % more parameters.  (For a helical joint, pars contains a parameter called
 % 'pitch'.)  q is the joint's position variable.
 
+% for CasADi symbolic calculations
+% q = q{:}.sym;
+
 if ischar( jtyp )
   code = jtyp;
 else

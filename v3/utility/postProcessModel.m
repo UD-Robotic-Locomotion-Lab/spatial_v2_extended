@@ -15,12 +15,19 @@ function model = postProcessModel(model)
     model.ancestors = {};
     model.ancestor_vinds = {};
     model.subtree_vinds = {};
+    model.q = [];
+    model.qd = [];
+    model.qdd = [];
     
     
     for i = 1:model.NB
         [nqi, nvi] = jinfo( model.jtype{i} );
         model.qinds{i} = qi+1 : qi+nqi;
         model.vinds{i} = vi+1 : vi+nvi;
+        
+        model.q{i} = Var(strcat('q',num2str(i)),nqi);
+        model.qd{i} = Var(strcat('qd',num2str(i)),nvi);
+        model.qdd{i} = Var(strcat('qd',num2str(i)),nvi);
         
         if model.parent(i) == 0
             model.ancestors{i} = [];
